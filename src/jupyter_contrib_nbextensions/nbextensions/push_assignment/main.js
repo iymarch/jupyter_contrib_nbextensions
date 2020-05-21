@@ -21,7 +21,7 @@ define([
             let dataset = {'username': username, 'content': content.responseJSON};
             $.ajax({
                 type: 'POST',
-                data: {notebook: JSON.stringify(dataset)};
+                data: {notebook: JSON.stringify(dataset)},
                 url: 'http://10.97.140.6:5000',
                 success: (result) => console.log(200);
             });
