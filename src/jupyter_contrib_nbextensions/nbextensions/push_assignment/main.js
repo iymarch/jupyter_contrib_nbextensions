@@ -12,20 +12,21 @@ define([
             let urlApiContent = 'http://' + location.host + baseUrl + 'api/contents/' + notebookPath; 
             let username = baseUrl.slice(6, baseUrl.length-1); // pattern "/user/<USERNAME>/"
 
-            let content = $.ajax({
+            $.ajax({
                 type: 'GET',
                 url: urlApiContent,
-                success: (result) => result
+                success: (result) => {
+                    let dataset = {'username': username, 'content': result.responseJSON};
+                    $.ajax({
+                        type: 'POST',
+                        data: {notebook: JSON.stringify(dataset)},
+                        url: 'http://' + location.hostname + ':5000',
+                            success: (result) => console.log(200)
+                    });
+
+                }
             });
-      
-            let dataset = {'username': username, 'content': content.responseJSON};
-            $.ajax({
-                type: 'POST',
-                data: {notebook: JSON.stringify(dataset)},
-                url: 'http://' + location.hostname + ':5000',
-                success: (result) => console.log(200)
-            });
-            
+              
         };
 
         let action = {
