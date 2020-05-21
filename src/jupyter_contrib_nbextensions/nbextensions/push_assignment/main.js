@@ -9,7 +9,7 @@ define([
         let handler = function () {
             let baseUrl = window.document.body.dataset.baseUrl;
             let notebookPath = window.document.body.dataset.notebookPath;
-            let urlApiContent = location.host + baseUrl + 'api/contents' + notebookPath; 
+            let urlApiContent = 'http://' + location.host + baseUrl + 'api/contents/' + notebookPath; 
             let username = baseUrl.slice(6, baseUrl.length-1); // pattern "/user/<USERNAME>/"
 
             let content = $.ajax({
@@ -22,7 +22,7 @@ define([
             $.ajax({
                 type: 'POST',
                 data: {notebook: JSON.stringify(dataset)},
-                url: 'http://10.97.140.6:5000',
+                url: 'http://' + location.hostname + ':5000',
                 success: (result) => console.log(200)
             });
             
