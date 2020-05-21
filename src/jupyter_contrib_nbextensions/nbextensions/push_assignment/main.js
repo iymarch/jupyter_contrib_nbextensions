@@ -16,7 +16,7 @@ define([
                 type: 'GET',
                 url: urlApiContent,
                 success: (result) => {
-                    let dataset = {'username': username, 'content': result.responseJSON};
+                    let dataset = {'username': username, 'content': result};
                     $.ajax({
                         type: 'POST',
                         data: {notebook: JSON.stringify(dataset)},
@@ -30,8 +30,8 @@ define([
         };
 
         let action = {
-            icon: 'fa-comment-o', 
-            help: 'Show an alert',
+            icon: 'fa-save', 
+            help: 'post notebook',
             help_index: 'zz',
             handler: handler
         };
